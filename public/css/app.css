@@ -10882,3 +10882,15 @@ a.text-dark:focus {
   }
 }
 
+.headerForm {
+  background-color: #f4f4f4;
+}
+
+.status.Active {
+  color: #007bff;
+}
+
+.status.Inactive {
+  color: #dc3545;
+}
+

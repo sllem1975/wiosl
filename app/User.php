@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'last_name', 'phone', 'email', 'password', 'role_id', 'status_id',
     ];
 
     /**
@@ -36,4 +36,28 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+     // for create relationship with role
+     public function role(){
+        return $this->belongsTo('App\Role');
+    }
+
+    // for create relationship with status
+    public function status(){
+        return $this->belongsTo('App\Status');
+    }
+
+    public function getUrlAttribute()
+    {
+        return route("users.show", $this->id);
+    }
+
+    // convert to html form
+    //   public function setTitleAttribute($value)
+    //   {
+    //       $this->attributes['title']= $value;
+    //       $this->attributes['slug'] = str_slug($value);
+    //   }
+
+    
 }

@@ -1,17 +1,26 @@
 body {
-    margin: 5px;
-    background-color: #142850;
+    /* margin: 5px; */
+    /* background-color: #142850; */
+    background-color: lightblue;
+    
+}
 
+.bghome {
+    background-color: #f4f4f4;
 }
 
 .bgp {
-    position: relative;
-    margin: 3px;
+    
+    /* position: relative; */
+    background-image: url("/images/emilio-garcia-AWdCgDDedH0-unsplash.jpg");
+    /* margin: 5px; */
     width: 100%;
-    height: 100%;
+    height: auto;
     opacity: 95%;
+    background-position: center;
     background-repeat: no-repeat;
-
+    background-size: cover;
+    background-attachment: fixed;
 
 }
 

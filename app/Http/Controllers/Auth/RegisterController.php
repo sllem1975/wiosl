@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Role;
+use App\Status;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -51,6 +53,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'max:100'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -64,10 +68,28 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        //dd($data);
         return User::create([
             'name' => $data['name'],
+            'last_name' => $data['last_name'],
+            'phone' => $data['phone'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'role_id' => $data['role_id'],
+            'status_id' => $data['status_id'],
         ]);
+    }
+
+    // I need to override the method for add role and status
+    public function showRegistrationForm()
+    {
+        $role = Role::all();
+        $status = Status::all();
+        return view('auth.register', ['role'=>$role, 'status'=>$status ]);
+    }
+
+    public function index()
+    {
+        return view('auth.index');
     }
 }

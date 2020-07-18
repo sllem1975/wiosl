@@ -6,3 +6,17 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+//header color form
+.headerForm {
+    background-color: #f4f4f4;
+}
+
+.status {
+    &.Active {
+        color: $color-blue;
+    }
+    &.Inactive {
+        color: $color-red;
+    }
+}

@@ -13,10 +13,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Route::resource('welcome', 'WelcomesController');
+Route::get('/', 'WelcomesController@index')->name('welcome');
 
 Auth::routes();
+//Route::resource('/auth', 'Register_Controller');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware(['auth'])->group(function (){
+
+    
+
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/home/dashboard', 'HomeController@dashboard')->name('home.dashboard');
+
+    Route::resource('/users', 'UsersController')->except([
+        'destroy'
+    ]);
+
+    Route::resource('/matches', 'MatchesController')->except([
+        'destroy'
+    ]);
+
+});
